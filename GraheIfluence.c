@@ -23,7 +23,7 @@ int main() {
 t_sommet initSommet(int numero,char *nom)
 {
     t_sommet sommetRetourner;
-    sommetRetourner.nom = malloc(strlen(nom) * sizeof(char));
+    sommetRetourner.nom = malloc((strlen(nom) + 1) * sizeof(char));
     strcpy(sommetRetourner.nom,nom);
     sommetRetourner.nbrSommet = numero;
     return sommetRetourner;
@@ -107,7 +107,8 @@ void afficherInfluence(t_graphe graphe){
 }
 
 void enregistrerTableauDansFichier(t_graphe  graphe, const char *fichierSave) {
-    FILE *fichier = fopen(fichierSave, "r"); // Ouvrir le fichier en mode écriture
+    FILE *fichier = fopen(fichierSave, "w"); // Open the file in write mode
+
 
     if (fichier == NULL) {
         printf("Erreur lors de l'ouverture du fichier.\n");
@@ -126,7 +127,7 @@ void enregistrerTableauDansFichier(t_graphe  graphe, const char *fichierSave) {
 }
 
 void recupererTableauDansFichier(t_graphe  *graphe, const char *fichierSave) {
-    FILE *fichier = fopen(fichierSave, "w"); // Ouvrir le fichier en mode écriture
+    FILE *fichier = fopen(fichierSave, "r"); // Ouvrir le fichier en mode écriture
 
     if (fichier == NULL) {
         printf("Erreur lors de l'ouverture du fichier.\n");
