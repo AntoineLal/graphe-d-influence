@@ -56,35 +56,34 @@ void initGrapheRandom(int ordre,t_graphe *graphe)
 
 
 
-void initialisationGraphe(int ordre,t_graphe *graphe)
-{
+void initialisationGraphe(int ordre, t_graphe *graphe) {
     graphe->ordre = ordre;
-    graphe->matriceAdjacence = malloc(sizeof(int)*ordre*ordre);
-    graphe->tabDynSom = malloc(sizeof(t_sommet)*ordre);
+    graphe->matriceAdjacence = malloc(sizeof(int) * ordre * ordre);
+    graphe->tabDynSom = malloc(sizeof(t_sommet) * ordre);
 
-    for (int i=0;i<graphe->ordre;i++)
-    {
-
-        printf("saisissez le nom de la personne %d\n",i);
-        fflush(stdin);
-        scanf("%s",graphe->tabDynSom[i].nom);
-        //gets(graphe->tabDynSom[i].nom);
-
-        for (int b=0;b<graphe->ordre;b++)
-        {
-            if (i!=b) {
-                printf("test");
-                printf("%d influence %d ? (1 pour oui 0 pour non)\n", i, b);
-                scanf(" %d", &graphe->matriceAdjacence[i][b]);
-                fflush(stdin);
-
-            } else
-                graphe->matriceAdjacence[i][b]=0;
-        }
-        initSommet(i,graphe->tabDynSom[i].nom);
+    if (graphe->matriceAdjacence == NULL || graphe->tabDynSom == NULL) {
+        // Handle memory allocation failure here
+        printf("Memory allocation failed.\n");
+        return;
     }
 
+    for (int i = 0; i < graphe->ordre; i++) {
+        printf("Saisissez le nom de la personne %d: ", i);
+        scanf("%s", graphe->tabDynSom[i].nom);
+
+        for (int b = 0; b < graphe->ordre; b++) {
+            if (i != b) {
+                printf("%s influence %s ? (1 pour oui 0 pour non): ", graphe->tabDynSom[i].nom, graphe->tabDynSom[b].nom);
+                scanf("%d", &graphe->matriceAdjacence[i][b]);
+            } else {
+                graphe->matriceAdjacence[i][b] = 0;
+            }
+        }
+        // Initialize the t_sommet structure
+        graphe->tabDynSom[i] = initSommet(i, graphe->tabDynSom[i].nom);
+    }
 }
+
 
 void testInfluence(t_graphe graphe,int i,int b){
     if(graphe.matriceAdjacence[i][b]==1)
