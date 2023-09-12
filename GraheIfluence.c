@@ -31,8 +31,13 @@ t_sommet initSommet(int numero,char *nom)
 
 void initGrapheRandom(int ordre,t_graphe *graphe)
 {
+    graphe->ordre = malloc(sizeof(int));
     graphe->ordre = ordre;
-    graphe->matriceAdjacence = malloc(sizeof(int)*ordre*ordre);
+
+    graphe->matriceAdjacence = malloc(sizeof(int)*ordre);
+    for (int i = 0; i < ordre; i++) {
+        graphe->matriceAdjacence[i] = malloc(sizeof(int)*ordre);
+    }
     graphe->tabDynSom = malloc(sizeof(t_sommet)*ordre);
 
     ///initialisation des influances de manieres aléatoires
@@ -50,7 +55,7 @@ void initGrapheRandom(int ordre,t_graphe *graphe)
 
     for (int i = 0; i < graphe->ordre; i++)
     {
-        //  initSommet(i,());
+          initSommet(i,(65+i));
     }
 }
 
@@ -59,7 +64,11 @@ void initGrapheRandom(int ordre,t_graphe *graphe)
 void initialisationGraphe(int ordre,t_graphe *graphe)
 {
     graphe->ordre = ordre;
-    graphe->matriceAdjacence = malloc(sizeof(int)*ordre*ordre);
+    graphe->matriceAdjacence = malloc(sizeof(int)*ordre);
+    graphe->matriceAdjacence = malloc(sizeof(int)*ordre);
+    for (int i = 0; i < ordre; i++) {
+        graphe->matriceAdjacence[i] = malloc(sizeof(int)*ordre);
+    }
     graphe->tabDynSom = malloc(sizeof(t_sommet)*ordre);
 
     for (int i=0;i<graphe->ordre;i++)
@@ -68,12 +77,12 @@ void initialisationGraphe(int ordre,t_graphe *graphe)
         printf("saisissez le nom de la personne %d\n",i);
         fflush(stdin);
         scanf("%s",graphe->tabDynSom[i].nom);
-        //gets(graphe->tabDynSom[i].nom);
+        fflush(stdin);
 
-        for (int b=0;b<graphe->ordre;b++)
+        for (int b=0; b<graphe->ordre; b++)
         {
             if (i!=b) {
-                printf("test");
+                printf("test \t");
                 printf("%d influence %d ? (1 pour oui 0 pour non)\n", i, b);
                 scanf(" %d", &graphe->matriceAdjacence[i][b]);
                 fflush(stdin);
@@ -81,7 +90,7 @@ void initialisationGraphe(int ordre,t_graphe *graphe)
             } else
                 graphe->matriceAdjacence[i][b]=0;
         }
-        initSommet(i,graphe->tabDynSom[i].nom);
+        graphe->tabDynSom[i] = initSommet(i,graphe->tabDynSom[i].nom);
     }
 
 }
