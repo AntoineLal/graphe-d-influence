@@ -5,4 +5,4 @@ set(CMAKE_CXX_STANDARD 14)
 
 include_directories(.)
 
-add_executable(GrapheInflu.c GraheIfluence.c)
+add_executable(graphe_d_influence GraheIfluence.c)
