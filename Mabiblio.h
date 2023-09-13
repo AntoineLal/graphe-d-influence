@@ -85,7 +85,71 @@ t_graphe initGraphe(int ordre,t_graphe graphe,char **tableauNom)
 
 void sauvegardeF(t_graphe graphe,char *FILENAME)
 {
-    fopen(FILENAME,"w");
-    fprintf(FILENAME,"%d",graphe.ordre);
-    fclose(FILENAME);
+    FILE *f;
+
+    f = fopen(FILENAME, "w");
+
+    fprintf(f,"%d ",graphe.ordre);
+
+    for (int i = 0; i < graphe.ordre; i++)
+    {
+        fprintf(f,"%s ",graphe.sommets[i].nom);
+        fprintf(f,"%d ",graphe.sommets[i].numero);
+
+    }
+
+    for (int j = 0; j < graphe.ordre; j++)
+    {
+        fprintf(f,"\n");
+
+        for (int k = 0; k < graphe.ordre; k++)
+        {
+            fprintf(f,"%d ",graphe.matrice[j][k]);
+        }
+    }
+    fclose(f);
+}
+
+t_graphe charge(char *FILENAME,t_graphe graphe)
+{
+
+    graphe.ordre =(int ) malloc(sizeof (int));
+    FILE *f;
+    f = fopen(FILENAME, "r");
+    fscanf(f,"%d ",&graphe.ordre);
+
+    graphe.matrice =(int **) malloc(sizeof (int *)*graphe.ordre);
+
+    for (int i = 0; i < graphe.ordre; i++)
+    {
+        graphe.matrice[i] =(int *) malloc(sizeof (int)*graphe.ordre);
+    }
+
+    graphe.sommets = malloc(sizeof (t_sommet)* graphe.ordre);
+
+    char buffer[32];
+
+    for (int i = 0; i < graphe.ordre; i++)
+    {
+        graphe.sommets[i].numero = malloc(sizeof (int ));
+        fscanf(f,"%s ",buffer);
+        fscanf(f,"%d ",&graphe.sommets[i].numero);
+        graphe.sommets[i].nom = malloc(sizeof (char )* strlen(buffer));
+        strcpy(graphe.sommets[i].nom,buffer);
+
+    }
+
+
+    for (int j = 0; j < graphe.ordre; j++)
+    {
+        fscanf(f,"\n");
+
+        for (int k = 0; k < graphe.ordre; k++)
+        {
+
+            fscanf(f,"%d ",&graphe.matrice[j][k]);
+        }
+    }
+    fclose(f);
+    return graphe;
 }
