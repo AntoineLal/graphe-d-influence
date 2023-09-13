@@ -20,7 +20,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#define taille 2
+#define taille 7
 
 typedef struct sommet{
     char *nom;
@@ -40,6 +40,31 @@ typedef struct graphe{
     int **matrice;      /// La matrice d'adjacence dynamique d'entiers
     t_sommet *sommets;  /// Un tableau dynamique de sommets
 }t_graphe;
+
+t_graphe matriceAdjacence(t_graphe graphe){
+    int matriceBuff[taille][taille] = {
+            {0, 1, 0, 0, 0, 0, 1},
+            {0, 0, 0, 0, 0, 0, 1}, // Remplissage matrice
+            {0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0}
+    };
+    for (int i = 0; i < graphe.ordre; ++i) {
+        for (int j = 0; j < graphe.ordre; ++j) {
+            graphe.matrice[i][j]=matriceBuff[i][j];
+        }
+    }
+    for (int i = 0; i < graphe.ordre; ++i) {
+        for (int j = 0; j < graphe.ordre; ++j) {
+            printf("%d ",graphe.matrice[i][j]);
+        }
+        printf("\n");
+    }
+    return graphe;
+}
+
 t_graphe initGraphe(int ordre,t_graphe graphe,char **tableauNom)
 {
     graphe.ordre =(int) malloc(sizeof(int ));
@@ -48,5 +73,6 @@ t_graphe initGraphe(int ordre,t_graphe graphe,char **tableauNom)
     for (int i = 0; i < ordre; ++i) {
         graphe.sommets[i] = initSommet(i,tableauNom[i]);
     }
+    matriceAdjacence(graphe);
     return graphe;
 }
