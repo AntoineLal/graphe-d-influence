@@ -27,7 +27,7 @@ int main() {
     strcpy(tableauNom[5],"IlhemF");
     strcpy(tableauNom[6],"JPS");
 
-    ///initalise le graphe
+    ///initalise le graphes
     t_graphe graphe;
     graphe = initGraphe(ordre,graphe,tableauNom);
     printf("test");
