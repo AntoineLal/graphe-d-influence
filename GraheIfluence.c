@@ -30,12 +30,18 @@ int main() {
     ///initalise le graphes
     t_graphe graphe;
     graphe = initGraphe(ordre,graphe,tableauNom);
-    printf("test");
     for (int i = 0; i < graphe.ordre; ++i) {
         printf("le nom du sommet %d est %s\n",graphe.sommets[i].numero,graphe.sommets[i].nom);
     }
+
+    sauvegardeF(graphe,"test");
+
+    ///libération de l'espace mémoire
     free(graphe.sommets);
-    free(graphe.matrice);
+    for (int i = 0; i < ordre; i++)
+    {
+        free(graphe.matrice[i]);
+    }
     free(tableauNom);
     return 0;
 }

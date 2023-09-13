@@ -70,9 +70,22 @@ t_graphe initGraphe(int ordre,t_graphe graphe,char **tableauNom)
     graphe.ordre =(int) malloc(sizeof(int ));
     graphe.ordre = ordre;
     graphe.sommets = malloc(sizeof (t_sommet)*ordre);
+    graphe.matrice = malloc(sizeof(int )*taille);
     for (int i = 0; i < ordre; ++i) {
         graphe.sommets[i] = initSommet(i,tableauNom[i]);
     }
+    for (int j = 0; j < taille; j++)
+    {
+        graphe.matrice[j] = malloc(sizeof(int )*taille);
+    }
     matriceAdjacence(graphe);
     return graphe;
+}
+
+
+void sauvegardeF(t_graphe graphe,char *FILENAME)
+{
+    fopen(FILENAME,"w");
+    fprintf(FILENAME,"%d",graphe.ordre);
+    fclose(FILENAME);
 }
