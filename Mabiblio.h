@@ -45,11 +45,11 @@ t_graphe matriceAdjacence(t_graphe graphe){
     int matriceBuff[taille][taille] = {
             {0, 1, 0, 0, 0, 0, 1},
             {0, 0, 0, 0, 0, 0, 1}, // Remplissage matrice
+            {0, 0, 0, 0, 0, 0, 1},
             {0, 0, 0, 0, 0, 0, 0},
             {0, 0, 0, 0, 0, 0, 0},
             {0, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0}
+            {0, 0, 1, 1, 1, 1, 0}
     };
     for (int i = 0; i < graphe.ordre; ++i) {
         for (int j = 0; j < graphe.ordre; ++j) {
@@ -63,6 +63,33 @@ t_graphe matriceAdjacence(t_graphe graphe){
         printf("\n");
     }
     return graphe;
+}
+
+void afficaheInflu(t_graphe graphe)
+{
+    int compteur;
+    for (int i = 0; i < graphe.ordre; i++)
+    {
+        compteur = 0;
+        printf("\n %s ",graphe.sommets[i].nom);
+        for (int j = 0; j < graphe.ordre; j++)
+        {
+            if (graphe.matrice[i][j])
+            {
+                if (!compteur)
+                {
+                    printf("influence :");
+                }
+                printf("%s ",graphe.sommets[j].nom);
+                compteur++;
+            }
+        }
+        if (!compteur)
+        {
+            printf("n'influence personne");
+        }
+
+    }
 }
 
 t_graphe initGraphe(int ordre,t_graphe graphe,char **tableauNom)

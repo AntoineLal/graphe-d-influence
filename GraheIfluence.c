@@ -46,8 +46,8 @@ int main() {
         free(graphe.matrice[i]);
     }
     free(tableauNom);
-     */
 
+*/
     t_graphe graphe = charge("../test.txt",graphe);
 
     printf("l'odre est :%d\n",graphe.ordre);
@@ -56,6 +56,9 @@ int main() {
         printf("le nom du sommet %d est %s\n",graphe.sommets[i].numero,graphe.sommets[i].nom);
     }
 
+
+
+    afficaheInflu(graphe);
 
     return 0;
 }
