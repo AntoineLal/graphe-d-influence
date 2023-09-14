@@ -51,7 +51,8 @@ int main() {
     t_graphe graphe;
     int menu;
     do {
-        printf("0 pour quitter  1 pour immprimer les sommets 2 pour imprimer le graphe d influence 3 pour charger graphe 4 pour sauvegarder graphe\n");
+        printf("0 pour quitter  1 pour immprimer les sommets 2 pour imprimer le graphe d influence 3 pour charger graphe 4 pour sauvegarder graphe 5 pour charge automatique\n");
+        scanf("%d",&menu);
         if (menu == 1){
             printf("l'odre est :%d\n",graphe.ordre);
 
@@ -60,7 +61,7 @@ int main() {
             }
         }
         if(menu==2){afficaheInflu(graphe);}
-        if(menu==3){graphe = charge("../test.txt",graphe);}
+        if(menu==5){graphe = charge("../test.txt",graphe);}
     } while (menu !=0);
 
 
