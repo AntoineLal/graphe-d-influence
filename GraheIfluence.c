@@ -5,7 +5,7 @@ int main() {
     t_graphe graphe;
     int menu;
     do {
-        printf("\n0 pour quitter  1 pour immprimer les sommets 2 pour imprimer le graphe d influence\n 3 pour charger graphe 4 pour sauvegarder graphe 5 pour charge automatique\n");
+        printf("\n0 pour quitter  1 pour immprimer les sommets 2 pour imprimer le graphe d influence\n3 pour charger graphe 4 pour sauvegarder graphe 5 pour charge automatique\n");
         scanf("%d",&menu);
         if (menu == 1){
             printf("l'odre est :%d\n",graphe.ordre);
