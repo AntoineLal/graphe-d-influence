@@ -48,17 +48,27 @@ int main() {
     free(tableauNom);
 
 */
-    t_graphe graphe = charge("../test.txt",graphe);
+    t_graphe graphe;
+    int menu;
+    do {
+        printf("0 pour quitter  1 pour immprimer les sommets 2 pour imprimer le graphe d influence 3 pour charger graphe 4 pour sauvegarder graphe\n");
+        if (menu == 1){
+            printf("l'odre est :%d\n",graphe.ordre);
 
-    printf("l'odre est :%d\n",graphe.ordre);
+            for (int i = 0; i < graphe.ordre; ++i) {
+                printf("le nom du sommet %d est %s\n",graphe.sommets[i].numero,graphe.sommets[i].nom);
+            }
+        }
+        if(menu==2){afficaheInflu(graphe);}
+        if(menu==3){graphe = charge("../test.txt",graphe);}
+    } while (menu !=0);
 
-    for (int i = 0; i < graphe.ordre; ++i) {
-        printf("le nom du sommet %d est %s\n",graphe.sommets[i].numero,graphe.sommets[i].nom);
-    }
 
 
 
-    afficaheInflu(graphe);
+
+
+
 
     return 0;
 }

@@ -64,6 +64,11 @@ t_graphe matriceAdjacence(t_graphe graphe){
     }
     return graphe;
 }
+void saveGraphe(t_graphe graphe){
+    for (int i = 0; i < graphe.ordre; ++i) {
+
+    }
+}
 
 void afficaheInflu(t_graphe graphe)
 {
@@ -158,7 +163,7 @@ t_graphe charge(char *FILENAME,t_graphe graphe)
 
     for (int i = 0; i < graphe.ordre; i++)
     {
-        graphe.sommets[i].numero = malloc(sizeof (int ));
+        graphe.sommets[i].numero = (int)malloc(sizeof (int ));
         fscanf(f,"%s ",buffer);
         fscanf(f,"%d ",&graphe.sommets[i].numero);
         graphe.sommets[i].nom = malloc(sizeof (char )* strlen(buffer));
