@@ -14,6 +14,7 @@
 #endif //THEORIEGRAPHE_MABIBLIO_H
 
 
+
 //
 // Created by eudess on 13/09/2023.
 //
@@ -184,4 +185,21 @@ t_graphe charge(char *FILENAME,t_graphe graphe)
     }
     fclose(f);
     return graphe;
+}
+
+void nomFichiercharge(t_graphe *graphe)
+{
+    char buffer[32];
+    printf("quel est le nom du fichier que vous voulez charger ?\n");
+    scanf("%s", buffer);
+    printf("\ncharge du fichier %s\n",buffer);
+    *graphe = charge(buffer,*graphe);
+}
+void nomFichierSave(t_graphe graphe)
+{
+    char buffer[32];
+    printf("sous quel nom voulez vous sauvegarder votre fichier ? ?\n");
+    scanf("%s", buffer);
+    printf("\nsauvegarde du fichier %s\n",buffer);
+    sauvegardeF(graphe,buffer);
 }
